@@ -2,7 +2,8 @@
 
 Notes that aren't directly related to course content about stuff that is surprising or new to me (or just as a reminder of things I rarely used)
 
-## static variables in functions
+## Stuff recently learned / newly discovered
+### static variables in functions
 
 Static variables can be defined in a function and the initial value is only is remembered / not initialized again on subsequent function calls.
 
@@ -19,7 +20,7 @@ Static variables can be defined in a function and the initial value is only is r
 [From Stackoverflow](https://stackoverflow.com/questions/6188994/static-keyword-inside-function)
 
 
-## self vs static
+### self vs static
 
 - `self` indicates the class where it is written in the code (resolved at compile time)
 - `static`indicates the class that is using it at runtime (meaning it can refer to subclasses)
@@ -44,7 +45,7 @@ Static variables can be defined in a function and the initial value is only is r
 
 [From Stackoverflow](https://stackoverflow.com/questions/5197300/new-self-vs-new-static/5197655)
 
-## Callable formats
+### Callable formats
 
 Callable can either be a string indicating the function name, a variable an (anonymous) function is assigned to or an array indicating the class (in case of static functions) or object as the first entry and the function as a second.
 
@@ -62,3 +63,43 @@ Examples from [php.net](https://www.php.net/manual/en/language.types.callable.ph
 
     // Type 4: Static class method call
     call_user_func('MyClass::myCallbackMethod');
+
+
+## Shorthand for assigning instance variables in constructor
+
+    class Product {
+      public function __construct(public string $name, public float $price) {}
+    }
+
+is the same as
+
+    class Product {
+      public string $name;
+      public float $price;
+
+      public function __construct(string $name, float $price) {
+        $this->name = $name;
+        $this->price = $price;
+      }
+    }
+
+Not sure if i like this.
+
+## No objects as array keys
+
+Use [https://www.php.net/manual/en/function.spl-object-hash.php](https://www.php.net/manual/en/function.spl-object-hash.php) instead.
+
+Values of course can be objects.
+
+
+## Other notes
+
+### Learning goals
+
+#### Frameworks
+
+- Laravel
+- Codeigniter
+- Laminas (= Zend)
+- Dive deeper into Slim
+
