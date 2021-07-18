@@ -65,7 +65,7 @@ Examples from [php.net](https://www.php.net/manual/en/language.types.callable.ph
     call_user_func('MyClass::myCallbackMethod');
 
 
-## Shorthand for assigning instance variables in constructor
+### Shorthand for assigning instance variables in constructor (PHP8 only)
 
     class Product {
       public function __construct(public string $name, public float $price) {}
@@ -85,11 +85,55 @@ is the same as
 
 Not sure if i like this.
 
-## No objects as array keys
+### No objects as array keys
 
 Use [https://www.php.net/manual/en/function.spl-object-hash.php](https://www.php.net/manual/en/function.spl-object-hash.php) instead.
 
 Values of course can be objects.
+
+
+### Most basic autoloader
+
+    spl_autoload_register(function ($class_name) {
+        include $class_name . '.php';
+    });
+
+### Clone objects with clone keyword
+
+    function nextDay(\DateTime $date) {
+      $interval = new DateInterval('P1D');
+      $nextDay = clone $date;
+      // Mutate the given date
+      return $nextDay->add($interval);
+    }
+
+Aside: PHP provides als a DateTimeImmutable class:
+
+    function nextDay(DateTimeImmutable $date) {
+      $interval = new DateInterval('P1D');
+      // DateTimeImmutable makes a new object.
+      return $date->add($interval);
+    }
+
+Taken from: https://www.phparch.com/2021/05/fiendish-functions-filtering-fact-from-fiction/
+
+### curly braces inside Strings
+
+Old one but never really used it until i got used to the someqhat similar way you can do it in javascript when using backticks (
+  
+Javascript:
+
+    console.log(`var is ${var}`);
+
+PHP:
+
+    echo "\$var is {$var}";
+
+Useful for complex expressions such as method calls or without space between variable and surrounding text.
+
+
+
+
 
 
 ## Other notes
