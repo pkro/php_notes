@@ -1,0 +1,70 @@
+body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, sans-serif;
+    color: #1b1b1b;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 860px;
+    box-sizing: border-box;
+}
+h1, h2 {
+    color: #774C9D;
+    margin-bottom: 0.25em;
+}
+h2 {
+    clear: left;
+}
+.subhead {
+    margin: -.5em auto 1em 5em;
+    font-style: italic;
+}
+#navlinks {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    height: 2.2em;
+}
+#navlinks a {
+    display: inline-block;
+    width: 14%;
+    text-decoration: none;
+    padding: 0.5em;
+    float: left;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #103F37;
+    color: #C2C2C2;
+}
+#navlinks a:visited {
+    color: #C2C2C2;
+}
+#navlinks a:hover, #navlinks a:active, #navlinks a:focus {
+    color: white;
+    text-decoration: none;
+}
+#navlinks a.current, #navlinks a.current:visited {
+    color: white;
+    background-color: #df4848;
+}
+p {
+    line-height: 1.3;
+}
+p small {
+font-size: .65em;
+display: inline-block;
+margin: 0 20%;
+padding: 1em;
+border: #1b1b1b solid 1px;
+}
+a {
+    color: #3770B7;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:visited {
+    color: #4C83C9;
+}
+a:hover, a:active, a:focus {
+    color: #499D6B;
+    text-decoration: underline;
+}

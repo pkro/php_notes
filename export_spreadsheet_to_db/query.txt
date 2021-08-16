@@ -1,0 +1,2 @@
+SELECT student_id, last_name, first_name, email, gradyear, state, program
+FROM students LEFT JOIN states USING (state_id) LEFT JOIN programs USING (program_id)
