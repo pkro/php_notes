@@ -1,7 +1,61 @@
 PHP notes from courses and web finds.
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [PHP language related and other tips](#php-language-related-and-other-tips)
+  - [static variables in functions](#static-variables-in-functions)
+  - [self vs static](#self-vs-static)
+  - [Callable formats](#callable-formats)
+  - [Shorthand for assigning instance variables in constructor (PHP8 only)](#shorthand-for-assigning-instance-variables-in-constructor-php8-only)
+  - [No objects as array keys](#no-objects-as-array-keys)
+  - [Arrays are assigned by value](#arrays-are-assigned-by-value)
+  - [modify array in foreach loop](#modify-array-in-foreach-loop)
+  - [array_map with multiple arguments](#array_map-with-multiple-arguments)
+  - [Most basic autoloader](#most-basic-autoloader)
+  - [Clone objects with clone keyword](#clone-objects-with-clone-keyword)
+  - [curly braces inside Strings](#curly-braces-inside-strings)
+  - [Array dereferencing (=destructuring / unpacking)](#array-dereferencing-destructuring--unpacking)
+  - [Splat operator / unpacking arrays and traversable objects](#splat-operator--unpacking-arrays-and-traversable-objects)
+  - [Variable functions](#variable-functions)
+  - [Reminder: arrays are not like other objects](#reminder-arrays-are-not-like-other-objects)
+  - [var_export vs var_dump](#var_export-vs-var_dump)
+  - [Iterate over the last X lines of a SplFileObject](#iterate-over-the-last-x-lines-of-a-splfileobject)
+  - [str_replace accepts also arrays for all of its arguments](#str_replace-accepts-also-arrays-for-all-of-its-arguments)
+  - [Regex capture groups with preg_replace](#regex-capture-groups-with-preg_replace)
+  - [type hinting in foreach loops](#type-hinting-in-foreach-loops)
+  - [authentication / pw hashing](#authentication--pw-hashing)
+  - [preventing xss attacks](#preventing-xss-attacks)
+  - [redirecting](#redirecting)
+  - [DateTime magic](#datetime-magic)
+  - [Email header injection attacks](#email-header-injection-attacks)
+  - [Backticks](#backticks)
+  - [Disable dangerous PHP functions](#disable-dangerous-php-functions)
+  - [Variable variables](#variable-variables)
+  - [DateTime from unix timestamp](#datetime-from-unix-timestamp)
+  - [Sort arrays on multiple criteria (PHP5+) and spaceship operator (php7+)](#sort-arrays-on-multiple-criteria-php5-and-spaceship-operator-php7)
+  - [Generators](#generators)
+  - [Web scraping](#web-scraping)
+  - [sscanf to extract parts of a string without regex](#sscanf-to-extract-parts-of-a-string-without-regex)
+  - [Randomization](#randomization)
+- [Intellij / PHPStorm related](#intellij--phpstorm-related)
+  - [resolving tables sql](#resolving-tables-sql)
+- [Database centric PHP stuff](#database-centric-php-stuff)
+  - [PDO prepared statements debugging](#pdo-prepared-statements-debugging)
+  - [insert or update if exists](#insert-or-update-if-exists)
+  - [Auto incremented indexes out of range](#auto-incremented-indexes-out-of-range)
+  - [use exceptions to avoid unnoticed errors](#use-exceptions-to-avoid-unnoticed-errors)
+- [PHP and Database version upgrades](#php-and-database-version-upgrades)
+  - [Upgrading from PHP 5 to 7](#upgrading-from-php-5-to-7)
+- [Security](#security)
+  - [Overview](#overview)
+  - [Securing the PHP installation](#securing-the-php-installation)
+  - [Keeping versions up to date](#keeping-versions-up-to-date)
+  - [$_SERVER variable](#_server-variable)
+- [Frameworks](#frameworks)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # PHP language related and other tips
 
