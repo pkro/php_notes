@@ -17,7 +17,7 @@ function processCsv($csv)
     }
 }
 
-$rows = iterator_to_array(processCsv($data));
+
 
 try {
     $db = new PDO('mysql:dbname=excel2db;host=localhost', 'root', 'root',
@@ -33,62 +33,47 @@ try {
 
 $insertStateStmt = $db->prepare("INSERT INTO states (state) VALUES(:state)");
 $insertProgramStmt = $db->prepare("INSERT INTO programs (program) VALUES(:program)");
+$insertStudentStmt = $db->prepare("INSERT INTO students (student_id, last_name, first_name, state_id, email, gradyear, program_id) values (:student_id, :last_name, :first_name, :state_id, :email, :gradyear, :program_id)");
 
 $state2index = [];
-$programs2index = [];
-for ($i = 0; $i < count($rows); $i++) {
-    $id[$i] = $rows[$i]['id'];
-    $last[$i] = $rows[$i]['last'];
-    $first[$i] = $rows[$i]['first'];
-    $phone[$i] = $rows[$i]['phone'];
-    $email[$i] = $rows[$i]['email'];
-    $gradyear[$i] = $rows[$i]['gradyear'];
-    $gpa[$i] = $rows[$i]['gpa'];
+$program2index = [];
+$bindAr = [];
 
-    $currentState = $rows[$i]['state'];
+$db->beginTransaction();
+
+foreach(processCsv($data) as $row) {
+    $bindAr[':student_id'] = $row['id'];
+    $bindAr[':last_name'] = $row['last'];
+    $bindAr[':first_name'] = $row['first'];
+    $bindAr[':email'] = $row['email'];
+    $bindAr[':gradyear'] = $row['gradyear'];
+
+    $currentState = $row['state'];
 
     if (!array_key_exists($currentState, $state2index)) {
         $insertStateStmt->bindValue(":state", $currentState);
         $success = $insertStateStmt->execute();
         $lastInsertId = $db->lastInsertId();
         $state2index[$currentState] = $lastInsertId;
-        $state[$i] = $lastInsertId;
+        $bindAr[':state_id'] = $lastInsertId;
     } else {
-        $state[$i] = $state2index[$currentState];
+        $bindAr[':state_id'] = $state2index[$currentState];
     }
+
+    $currentProgram = $row['program'];
+
+    if (!array_key_exists($currentProgram, $program2index)) {
+        $insertProgramStmt->bindValue(":program", $currentProgram);
+        $success = $insertProgramStmt->execute();
+        $lastInsertId = $db->lastInsertId();
+        $program2index[$currentProgram] = $lastInsertId;
+        $bindAr[':program_id'] = $lastInsertId;
+    } else {
+        $bindAr[':program_id'] = $program2index[$currentProgram];
+    }
+
+    $insertStudentStmt->execute($bindAr);
+    $insertStudentStmt->debugDumpParams();
 }
 
-echo '<pre>';
-var_dump($state2index);
-echo '</pre>';
-exit;
-/*
-$db->beginTransaction();
-
-
-foreach ($states as $idx => $state) {
-    $stmt = $db->prepare($insertState);
-    $stmt->bindValue(1, $idx, PDO::PARAM_INT);
-    $stmt->bindValue(2, $state, PDO::PARAM_INT);
-    $stmt->execute();
-}
-
-
-
-foreach ($programs as $idx => $program) {
-    $stmt = $db->prepare($insertProgram);
-    $stmt->bindValue(1, $idx, PDO::PARAM_INT);
-    $stmt->bindValue(2, $state, PDO::PARAM_INT);
-    $stmt->execute();
-}
-
-$insertProgram = "INSERT IGNORE INTO programs (program_id, program) VALUES(?, ?)";
-
-foreach ($programs as $idx => $program) {
-    $stmt = $db->prepare($insertProgram);
-    $stmt->bindValue(1, $idx, PDO::PARAM_INT);
-    $stmt->bindValue(2, $state, PDO::PARAM_INT);
-    $stmt->execute();
-}
-
-$db->commit();*/
+$db->commit();
