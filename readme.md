@@ -649,6 +649,135 @@ PHP7+:
 Don't use mt_rand anymore; use `random_int` (or `random_bytes`)instead (greater value range and cryptographically safe).
 Shuffle isn't cryptographically safe either (and was shit from the get go as it created biases in randomization).
 
+# Composer
+
+Composer is basically NPM/yarn/pup-like command line tool for php.
+
+- installs libraries (packages) to the current project (or globally)
+- manages project dependencies
+- manages and updates packages
+- simplifies project migration
+
+[Packagist](https://packagist.org/) is the main Composer repository. It aggregates public PHP packages installable with
+Composer.
+
+Installation (global):
+
+`curl -sS https://getcomposer.org/installer | php`
+
+Or install `composer.phar` (basically download) only in the current directory from here:
+
+https://getcomposer.org/composer.phar
+
+When using the local composer.phar, replace `composer` in the examples with `php composer.phar`
+
+## Workflow
+
+- initialize compose in the current project
+- install / use / managelibraries and packages
+- migrate composer settings with the project
+- install project dependencies on migration
+
+### Initialize composer
+
+- in intellij, right click on project root folder and add `composer.json` file or run `composer init` in the project
+  root from the command line to interactively create the composer.json
+- run `composer install` to let composer create a vendor directory, create the autoloader and install packages if they
+  are already defined in the json.
+
+### Find and install package
+
+Most packages can be found on packagist.org, with installation instructions. These
+
+Example:
+
+`composer require league/color-extractor:0.3.*`
+
+Install from composer.json:
+
+`composer install`
+
+**Each installed package under the vendor directory gets its own composer.json with its own dependencies.**
+
+### Use libraries
+
+Composer creates an autoloader that must be required in the php scripts:
+
+    require 'vendor/autoload.php';
+    
+    use League\ColorExtractor\Palette;
+
+### Package versions
+
+Version constraints:
+
+[Major version].[minor release].[incremental update]
+
+- Major version: often breaks existing code on new version
+- minor release: rarely breaks existing code on new version
+- incremental update: never breaks existing code
+
+Wildcards can be used:
+
+`composer require league/color-extractor:0.3.*` (fixed major and minor to 0.3, any update)
+
+Tilde Version ranges:
+
+`~` marks the minimum version allowed, but enables updates until the next significant release.
+
+`~1.3`: >= 1.3 < 2.0.0  
+`~1.3.5`: >= 1.3.5 < 1.4.0
+
+Caret version range:
+
+Same as tilde but always allows nonbreaking (minor version) updates.
+
+`^1.2.3`: >= 1.2.3 < 2.0.0
+
+[More info on versioning](https://getcomposer.org/doc/articles/versions.md)
+
+### Purpose of composer.lock
+
+Ensures that exactly the same versions as in the original project are used when sharing composer.json and composer.lock,
+including the libraries own sub-dependencies.
+
+### Updating composer packages
+
+Use `composer outdated` to find outdated packages in the project.
+
+If the result has a `!` between the version numbers, it indicates that something might break when updating.
+
+Best practice is to incrementally update, either by indicating a new version or using `~`
+
+Edit the version in composer.json, then run `composer update [packagename]` or just `composer update` for all versions
+in composer.json.
+
+Example:
+
+- Version 1.17.0 is installed
+- change to ~1.17.0 to get latest minor release and test if everything still works
+- change to ^1.0 to get the latest version that's still major version 1, test
+- update to next major version if desired: ^2
+-
+
+### Useful composer commands
+
+- `composer init` to initialize a new composer.json file interactively
+- `composer install` install packages from composer.json / .lock (if exists)
+- `composer require [vendor/package]` adds a package
+    - `composer require --dev [vendor/package]` adds a package as a dev requirement (basically just puts it in another
+      section in the json and lets you choose later if it should be installed)
+- `composer show` shows installe packages including subdependencies
+- `composer outdated` shows packages for which newer versions exist
+- `composer update` updates all packages to the versions indicated in composer.json and updates composer.lock
+- `composer update [vendor/packagename]` updates a specific package
+- `composer remove [vendor/packagename]` removes package and all its (unique) dependencies
+
+## Composer in production
+
+- never commit vendor folder as composer.json/lock contains all the necessary information; use .gitignore
+- commit composer.lock if exact replica of library versions is desired / required
+
 # Intellij / PHPStorm related
 
 ## resolving tables sql
@@ -1071,6 +1200,18 @@ would load via an <img> tag an external file, with the submitted username and pa
 Use $_SERVER['SCRIPT_NAME'] instead of $_SERVER['PHP_SELF']. HTML encode every string sent to the browser that should
 not be interpreted as HTML, unless you are absolutely certain that it cannot contain anything that the browser can
 interpret as HTML.
+
+# Testing legacy applications
+
+Notes from the course of the same name by Chris Hartjes on linkedin learning
+
+## What changes when testing legacy code
+
+## Why legacy code can be hard to test
+
+## Laying the foundation
+
+## Testing legacy code
 
 # Frameworks
 
