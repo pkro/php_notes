@@ -5,71 +5,108 @@ PHP notes from courses and web finds.
 **Table of Contents**
 
 - [PHP language related and other tips](#php-language-related-and-other-tips)
-    - [static variables in functions](#static-variables-in-functions)
-    - [self vs static](#self-vs-static)
-    - [Callable formats](#callable-formats)
-    - [Shorthand for assigning instance variables in constructor (PHP8 only)](#shorthand-for-assigning-instance-variables-in-constructor-php8-only)
-    - [No objects as array keys](#no-objects-as-array-keys)
-    - [Arrays are assigned by value](#arrays-are-assigned-by-value)
-    - [modify array in foreach loop](#modify-array-in-foreach-loop)
-    - [array_map with multiple arguments](#array_map-with-multiple-arguments)
-    - [Most basic autoloader](#most-basic-autoloader)
-    - [Clone objects with clone keyword](#clone-objects-with-clone-keyword)
-    - [curly braces inside Strings](#curly-braces-inside-strings)
-    - [Array dereferencing (=destructuring / unpacking)](#array-dereferencing-destructuring--unpacking)
-    - [Splat operator / unpacking arrays and traversable objects](#splat-operator--unpacking-arrays-and-traversable-objects)
-    - [Variable functions](#variable-functions)
-    - [Reminder: arrays are not like other objects](#reminder-arrays-are-not-like-other-objects)
-    - [var_export vs var_dump](#var_export-vs-var_dump)
-    - [Iterate over the last X lines of a SplFileObject](#iterate-over-the-last-x-lines-of-a-splfileobject)
-    - [str_replace accepts also arrays for all of its arguments](#str_replace-accepts-also-arrays-for-all-of-its-arguments)
-    - [Regex capture groups with preg_replace](#regex-capture-groups-with-preg_replace)
-    - [type hinting in foreach loops](#type-hinting-in-foreach-loops)
-    - [authentication / pw hashing](#authentication--pw-hashing)
-    - [preventing xss attacks](#preventing-xss-attacks)
-    - [redirecting](#redirecting)
-    - [DateTime magic](#datetime-magic)
-    - [Email header injection attacks](#email-header-injection-attacks)
-    - [Backticks](#backticks)
-    - [Disable dangerous PHP functions](#disable-dangerous-php-functions)
-    - [Variable variables](#variable-variables)
-    - [DateTime from unix timestamp](#datetime-from-unix-timestamp)
-    - [Sort arrays on multiple criteria (PHP5+) and spaceship operator (php7+)](#sort-arrays-on-multiple-criteria-php5-and-spaceship-operator-php7)
-    - [Generators](#generators)
-    - [Web scraping](#web-scraping)
-    - [sscanf to extract parts of a string without regex](#sscanf-to-extract-parts-of-a-string-without-regex)
-    - [Randomization](#randomization)
+  - [static variables in functions](#static-variables-in-functions)
+  - [self vs static](#self-vs-static)
+  - [Callable formats](#callable-formats)
+  - [Shorthand for assigning instance variables in constructor (PHP8 only)](#shorthand-for-assigning-instance-variables-in-constructor-php8-only)
+  - [No objects as array keys](#no-objects-as-array-keys)
+  - [Arrays are assigned by value](#arrays-are-assigned-by-value)
+  - [modify array in foreach loop](#modify-array-in-foreach-loop)
+  - [array_map with multiple arguments](#array_map-with-multiple-arguments)
+  - [Most basic autoloader](#most-basic-autoloader)
+  - [Clone objects with clone keyword](#clone-objects-with-clone-keyword)
+  - [curly braces inside Strings](#curly-braces-inside-strings)
+  - [Array dereferencing (=destructuring / unpacking)](#array-dereferencing-destructuring--unpacking)
+  - [Splat operator / unpacking arrays and traversable objects](#splat-operator--unpacking-arrays-and-traversable-objects)
+  - [Variable functions](#variable-functions)
+  - [Reminder: arrays are not like other objects](#reminder-arrays-are-not-like-other-objects)
+  - [var_export vs var_dump](#var_export-vs-var_dump)
+  - [Iterate over the last X lines of a SplFileObject](#iterate-over-the-last-x-lines-of-a-splfileobject)
+  - [str_replace accepts also arrays for all of its arguments](#str_replace-accepts-also-arrays-for-all-of-its-arguments)
+  - [Regex capture groups with preg_replace](#regex-capture-groups-with-preg_replace)
+  - [type hinting in foreach loops](#type-hinting-in-foreach-loops)
+  - [authentication / pw hashing](#authentication--pw-hashing)
+  - [preventing xss attacks](#preventing-xss-attacks)
+  - [redirecting](#redirecting)
+  - [DateTime magic](#datetime-magic)
+  - [Email header injection attacks](#email-header-injection-attacks)
+  - [Backticks](#backticks)
+  - [Disable dangerous PHP functions](#disable-dangerous-php-functions)
+  - [Variable variables](#variable-variables)
+  - [DateTime from unix timestamp](#datetime-from-unix-timestamp)
+  - [Sort arrays on multiple criteria (PHP5+) and spaceship operator (php7+)](#sort-arrays-on-multiple-criteria-php5-and-spaceship-operator-php7)
+  - [Generators](#generators)
+  - [Web scraping](#web-scraping)
+  - [sscanf to extract parts of a string without regex](#sscanf-to-extract-parts-of-a-string-without-regex)
+  - [Randomization](#randomization)
+- [Composer](#composer)
+  - [Workflow](#workflow)
+    - [Initialize composer](#initialize-composer)
+    - [Find and install package](#find-and-install-package)
+    - [Use libraries](#use-libraries)
+    - [Package versions](#package-versions)
+    - [Purpose of composer.lock](#purpose-of-composerlock)
+    - [Updating composer packages](#updating-composer-packages)
+    - [Useful composer commands](#useful-composer-commands)
+  - [Composer in production](#composer-in-production)
+- [PHP test driven development](#php-test-driven-development)
+  - [Test driven development](#test-driven-development)
+  - [Why unit test?](#why-unit-test)
+    - [Ensures it works now and in the future](#ensures-it-works-now-and-in-the-future)
+    - [adds additional documentation](#adds-additional-documentation)
+    - [Reduces bugs](#reduces-bugs)
+    - [Improves refactoring](#improves-refactoring)
+    - [Helps writing better designed code](#helps-writing-better-designed-code)
+  - [Automated vs manual testing](#automated-vs-manual-testing)
+  - [Other types of testing](#other-types-of-testing)
+  - [Installing PHP unit](#installing-php-unit)
+  - [General principles](#general-principles)
+  - [Arrange-Act-Assert](#arrange-act-assert)
+  - [Running tests](#running-tests)
+    - [By hand:](#by-hand)
+    - [In intellij](#in-intellij)
+    - [phpunit.xml](#phpunitxml)
+  - [Testdoubles](#testdoubles)
+  - [Data Providers](#data-providers)
+  - [Exception-based tests](#exception-based-tests)
+  - [TDD advantages](#tdd-advantages)
+  - [Code coverage basics](#code-coverage-basics)
+- [Testing legacy applications](#testing-legacy-applications)
+  - [What changes when testing legacy code](#what-changes-when-testing-legacy-code)
+  - [Why legacy code can be hard to test](#why-legacy-code-can-be-hard-to-test)
+  - [Laying the foundation](#laying-the-foundation)
+  - [Testing legacy code](#testing-legacy-code)
 - [Intellij / PHPStorm related](#intellij--phpstorm-related)
-    - [resolving tables sql](#resolving-tables-sql)
+  - [resolving tables sql](#resolving-tables-sql)
 - [Database centric PHP stuff](#database-centric-php-stuff)
-    - [PDO prepared statements debugging](#pdo-prepared-statements-debugging)
-    - [insert or update if exists](#insert-or-update-if-exists)
-    - [Auto incremented indexes out of range](#auto-incremented-indexes-out-of-range)
-    - [use exceptions to avoid unnoticed errors](#use-exceptions-to-avoid-unnoticed-errors)
+  - [PDO prepared statements debugging](#pdo-prepared-statements-debugging)
+  - [insert or update if exists](#insert-or-update-if-exists)
+  - [Auto incremented indexes out of range](#auto-incremented-indexes-out-of-range)
+  - [use exceptions to avoid unnoticed errors](#use-exceptions-to-avoid-unnoticed-errors)
 - [PHP and Database version upgrades](#php-and-database-version-upgrades)
-    - [Upgrading from PHP 5 to 7](#upgrading-from-php-5-to-7)
+  - [Upgrading from PHP 5 to 7](#upgrading-from-php-5-to-7)
 - [Security](#security)
-    - [Overview](#overview)
-    - [Securing the PHP installation](#securing-the-php-installation)
-        - [Keeping versions up to date](#keeping-versions-up-to-date)
-        - [phpinfo and phpMyAdmin](#phpinfo-and-phpmyadmin)
-        - [Configure error reporting and logging](#configure-error-reporting-and-logging)
-        - [Other php.ini configurations](#other-phpini-configurations)
-        - [PHP on a shared host](#php-on-a-shared-host)
-    - [Filtering input and controlling output](#filtering-input-and-controlling-output)
-        - [Validate input](#validate-input)
-        - [Sanitizing data](#sanitizing-data)
-        - [Keeping code private](#keeping-code-private)
-        - [Smart logging](#smart-logging)
-        - [Cookie configuration](#cookie-configuration)
-    - [Defending against the most common attacks](#defending-against-the-most-common-attacks)
-        - [Cross-site scripting (XSS)](#cross-site-scripting-xss)
-        - [Cross-site request forgery (CSRF)](#cross-site-request-forgery-csrf)
-        - [SQL injection](#sql-injection)
-        - [Session hijacking and fixation](#session-hijacking-and-fixation)
-        - [Remote system execution](#remote-system-execution)
-        - [PHP code injection](#php-code-injection)
-    - [$_SERVER variable](#_server-variable)
+  - [Overview](#overview)
+  - [Securing the PHP installation](#securing-the-php-installation)
+    - [Keeping versions up to date](#keeping-versions-up-to-date)
+    - [phpinfo and phpMyAdmin](#phpinfo-and-phpmyadmin)
+    - [Configure error reporting and logging](#configure-error-reporting-and-logging)
+    - [Other php.ini configurations](#other-phpini-configurations)
+    - [PHP on a shared host](#php-on-a-shared-host)
+  - [Filtering input and controlling output](#filtering-input-and-controlling-output)
+    - [Validate input](#validate-input)
+    - [Sanitizing data](#sanitizing-data)
+    - [Keeping code private](#keeping-code-private)
+    - [Smart logging](#smart-logging)
+    - [Cookie configuration](#cookie-configuration)
+  - [Defending against the most common attacks](#defending-against-the-most-common-attacks)
+    - [Cross-site scripting (XSS)](#cross-site-scripting-xss)
+    - [Cross-site request forgery (CSRF)](#cross-site-request-forgery-csrf)
+    - [SQL injection](#sql-injection)
+    - [Session hijacking and fixation](#session-hijacking-and-fixation)
+    - [Remote system execution](#remote-system-execution)
+    - [PHP code injection](#php-code-injection)
+  - [$_SERVER variable](#_server-variable)
 - [Frameworks](#frameworks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -794,582 +831,6 @@ Example:
 
 - never commit vendor folder as composer.json/lock contains all the necessary information; use .gitignore
 - commit composer.lock if exact replica of library versions is desired / required
-
-# Standard PHP Library course notes
-
-Course notes on the SPL course by David Powers on linkedin learning
-
-## Introduction
-
-What is SPL?
-
-- Core part of PHP introduced in PHP 5.0
-- "Collection of interfaces and classes for common problems"
-- Bad documentation
-- Mostly data structures and iterators
-
-### Iterators
-
-- Classes for special looping with foreach
-    - e.g. looping over the file system
-    - looping with filters
-    - `CachingIterator` with lookahead for next element
-
-#### Iterator interface
-
-5 Methods:
-
-- `rewind()` moves iterator back to 1st element
-- `key()` current element's key
-- `current()` current element's value
-- `next()` moves iterator to next element
-- `valid()` checks if there is a next element to move to
-
-#### Advantages
-
-- Simpler code
-- Reusable code
-- Faster because written in C
-- **Iterators can be chained** (passed as argument to another iterator)
-
-#### Usage
-
-- All iterators are built in classes, so they get instantiated with the `new` keyword.
-- Set options using class constants such as `FilesystemIterator::SKIP_DOTS`
-    - Options can be set as constructor argument on instantiation or using the `setFlags()` method
-- Can be chained:
-
-        $dir = new FilsystemIterator('.');
-        $jpegs = new RegexIterator($dir, '/\.jpg/i);
-        $second_two = new LimitIterator($jpegs, 2, 2); // start from third element and only return next 2 elements
-        
-        foreach($second_two as $file) {
-            //...
-        }
-
-- each element inside the loop is an object
-- can be converted to array (`iterator_to_array()`), rarely necessary
-
-## Exploring files and directories
-
-### DirectoryIterator
-
-Traverses a single directory (not recursively). Has a quirk when assigning an entry to an array, entry needs to be
-cloned for that to work.
-
-- includes dot files
-- numbered keys
-- path not included in value
-- no configuration options
-- assigning entries to array requires cloning them
-
-Entries are DirectoryIterator objects that contain a reference to the file.
-
-    $dir = new DirectoryIterator('./common/images');
-    
-    foreach ($dir as $key => $file) {
-        if ($file->isFile()) { // only files, not directories
-            echo $key . ": "; // 0,1,2... (skipping the directories)
-            echo $file->getRealPath() . "<br>";
-            // this doesn't work (you would expect $files to be an array of file objects,
-            $wrongFileArray[] = $file;
-            // this does
-            $files[] = clone $file; //
-        }
-    }
-    
-    echo $wrongFileArray[0]->getRealPath(); // prints nothing
-    echo $files[0]->getRealPath(); // prints path as expected
-
-### FilesystemIterator
-
-`FilesystemIterator` extends `DirectoryIterator` with a number of improvements.
-
-- skips dot files
-- key = value = pathname,
-- configurable (e.g. FilesystemIterator::KEY_AS_FILENAME)
-- no cloning necessary to assign entries
-
-Example:
-
-    $dir = new FilesystemIterator('./common/images', FilesystemIterator::UNIX_PATHS | FilesystemIterator::KEY_AS_FILENAME);
-    // alternative: $dir->setFlags(FilesystemIterator::UNIX_PATHS | FilesystemIterator::KEY_AS_FILENAME);
-    foreach ($dir as $key => $file) {
-        if ($file->isFile()) { // only files, not directories
-            echo $key . ": "; // relative path is the key
-            echo $file . "<br>"; // ...and the value
-            $files[] = $file; // works out of the box w/o clone; $file is a SplFileInfo object
-        }
-    }
-    
-    echo $files[0]->getRealPath();
-
-### RecursiveDirectoryIterator
-
-Inherits from FileSystemIterator (so it has its configurable options / uses constants **from its parent class,
-FilesystemIterator**).
-
-RecursiveIteratorIterator doesn't have setFlags method!
-
-    $files = new RecursiveDirectoryIterator("common");
-    $files->setFlags(FilesystemIterator::SKIP_DOTS | FilesystemIterator::UNIX_PATHS);
-    
-    // without the RecursiveIteratorIterator, we just get the top level files / directories as usual
-    
-    // shows only files (Top level / self not included)
-    //$files = new RecursiveIteratorIterator($files);
-    // shows files and directories (directories first)
-    $files = new RecursiveIteratorIterator($files, RecursiveIteratorIterator::SELF_FIRST); // note: no setFlags()
-    $files->setMaxDepth(1);
-    
-    foreach ($files as $file) {
-        echo $file;
-        echo "<br>";
-    }
-
-### SplFileInfo
-
-Object returned by FilesystemIterator with various methods (isFile(), getSize(), isWritable(), getPathInfo() etc.), se
-2_4_SplFileInfo.php for examples.
-
-- getRealPath() method always returns OS-specific path format.
-- getPOathInfo() returns a `SolFileInfo` object for the files' *parent*
-- getType() returns `file`, `link` or `dir`, NOT the mime type
-- openFile() returns an `SplFileObject` of the file
-
-### SplFileObject
-
-- inherits from SplFileInfo so it has all its methods
-- Duplicates many procedural PHP functions such as fgetcsv() as methods
-- empty lines can be skipped
-  using `$fob->setFlags(SplFileObject::SKIP_EMPTY | SplFileObject::READ_AHEAD | SplFileObject::DROP_NEW_LINE);`
-- `seek()` goes to the indicated line, `current()` gets the current value
-- SplFileInfo::fopen uses the same flags as the normal
-  php [fopen method](https://www.php.net/manual/en/function.fopen.php) method
-
-Example adding text to the end of a file:
-
-    while (!$fob->eof()) {
-        $fob->next();
-    }
-    if ($fob->isWritable()) {
-        $fob->fwrite("\r\n\r\nYay adding stuff at the end");
-    }
-
-Example reading a CSV file using SplFileObject:
-
-    $csv = new SplFileObject('common/data/cars.csv');
-    $csv->setCsvControl(",", "\"");
-    $csv->setFlags(SplFileObject::READ_CSV);
-    
-    
-    $cars = [];
-    foreach ($csv as $line) {
-        if (sizeof($line) > 1) {
-            $cars[] = $line;
-        }
-    }
-
-### SplTempFileObject
-
-- held in memory unless (until) it a certain size threshold, then in system's temp file dir
-- handles memory and cleans up ressources automatically
-- for simple csv download example, see 2_7
-
-## Filtering
-
-### GlobIterator
-
-Globbing = matching files with wildcards (they are not exactly the same as regex wildcards, esp. *)
-
-- `?` match single character
-- `*` match zero or more characters (doesn't mean repeat the previous character 0-more times, just "one or more
-  characters")
-- `[abc]` match one character from a selection
-- `[a-z]` match character from range
-- `[!abc]` match any character not in selection
-
-Example:
-
-    // in windows, GlobIterator needs the full path
-    $files = new GlobIterator(__DIR__ . '/common/images/*.jpg'); 
-    
-    foreach ($files as $file) { // $file is a SplFileInfo object
-        echo $file->getFilename();
-    }
-
-### RegexIterator
-
-Filter iterator with "real" regular expressions:
-
-    try {
-        $xml = new SimpleXMLIterator('common/data/courses.xml', 0, true);
-        // alternative:
-        // $xml = simplexml_load_file('common/data/courses.xml', 'SimpleXMLIterator');
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-    
-    // get all courses fro Jo(h)n Peck
-    foreach ($xml as $course) {
-        $matches = new RegexIterator($course->author, '/joh?n peck/i');
-        foreach ($matches as $match) {
-            echo $course->title . " with <b>" . $match . "</b> (Duration: " . $course->duration . ")<br><br>";
-        }
-    }
-
-Instead of doing messy lookaheads in the regex, the filtering can be inverted:
-
-    $files = new RegexIterator($files, '/\/\./', RegexIterator::MATCH, RegexIterator::INVERT_MATCH);
-
-### LimitIterator
-
-Useful for e.g. pagination, see 3_4_limit_paginator.php
-
-    try {
-        $xml = new SimpleXMLIterator('common/data/courses.xml', 0, true);
-        $first10 = new LimitIterator($xml, 0, 10);
-        $next10 = new LimitIterator($xml, 10, 10);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-    
-    foreach ($first10 as $course) {
-        echo $first10->getPosition() + 1 . ". " . $course->title . " with <b>" . $course->author . "</b> (Duration: " . $course->duration . ")<br><br>";
-    }
-
-### CallbackFilterIterator
-
-What it says, filters an iterator. The expected function gets $current, $key and the iterator itself passed as
-parameters.
-
-    $onlyIntermediate = new CallbackFilterIterator($xml, fn($course) => $course->level == "Intermediate");
-    // or 
-    $onlyIntermediate = new CallbackFilterIterator($xml, function ($current, $key, $iterator) {
-        return $current->level == "Intermediate";
-    });
-    // or
-    $onlyIntermediate = new CallbackFilterIterator($xml, fn($course) => $course->level == "Intermediate");
-    // or
-    $onlyIntermediate = new CallbackFilterIterator($xml, "onlyIntermediate"); // onlyIntermediate is a function we define somewhere
-
-### Recursive callback filter
-
-    try {
-        $dir = new RecursiveDirectoryIterator('common', RecursiveDirectoryIterator::SKIP_DOTS);
-        // ignore intellij complaining that callback must be a string, works with closure too
-        $filtered = new RecursiveCallbackFilterIterator($dir, function ($current, $key, $iterator) {
-            if ($iterator->hasChildren()) { // invoke on iterator, not current
-                return true; // ensure that it's applied recursively
-            }
-            return $current->getSize() > 1024 * 6;
-        });
-        // must be applied AFTER callbackiterator 
-        $filtered = new RecursiveIteratorIterator($filtered);
-    } catch (Exception $exception) {
-        echo $exception->getMessage();
-    }
-    
-    foreach ($filtered as $file) {
-        echo $file->getFilename() . ": " . $file->getSize() . "<br>";
-    }
-
-### FilterIterator
-
-Abstract class that must be implemented. Useful for reusable filters. See `3_7_extending_FilterIterator.php`. Minimum
-that must be implemented is the accept() method.
-
-### RecursiveFilterIterator
-
-Minimal implementation:
-
-    class FilterImages extends RecursiveFilterIterator
-    {
-        public function accept()
-        {
-            // this is necessary for the recursivenes
-            if ($this->hasChildren()) { // NOT this->current()->hasChildren
-                return true;
-            }
-            return $this->current()->getExtension() == 'png';
-    
-        }
-    }
-    
-    $files = new RecursiveDirectoryIterator('common', RecursiveDirectoryIterator::SKIP_DOTS | RecursiveDirectoryIterator::UNIX_PATHS);
-    $files = new FilterImages($files);
-    $files = new RecursiveIteratorIterator($files);
-
-If a special constructor (e.g. with additional arguments) is implemented, the `getChildren` method must be implemented
-as well as it returns a new Iterator of its own type. See `3_8_extending_RecursiveFilterIterator.php`.
-
-    // must be implemented for recursive iterator IF the constructor is not the default constructor like here
-    public function getChildren()
-    {
-        // returns new FilterByExtension iterator with its children
-        return new self($this->getInnerIterator()->getChildren(), $this->extensions);
-    }
-
-### ParentIterator
-
-Finds elements of recursive iterators that have children. Useful for building menus, categories etc.
-
-    $dirs = new RecursiveDirectoryIterator('.');
-    $dirs = new ParentIterator($dirs);
-    // Gotcha: by default, RecursiveIteratorIterator applies to LEAVES_ONLY, so it never returns a node with children
-    $dirs = new RecursiveIteratorIterator($dirs, RecursiveIteratorIterator::SELF_FIRST); // or CHILD_FIRST
-
-Another example would be using it to traverse a multidimensional associative array instead of the filesystem, see ch03
-folder example.
-
-## Array iterators
-
-Arrays and iterators are not the same (even though arrays can be traversed with foreach).
-
-### Converting between arrays and iterators
-
-ArrayIterators implement many array functions as methods, e.g. `sort(&ar)` = `ArrayIterator::asort`.
-
-Gotcha: 'ArrayIterator::getArrayCopy', when called on a child class iterator such as LimitIterator, returns the the full
-array and not the "limited" version. The `iterator_to_array` function does not have this problem.
-
-    $languages = ['JS', 'C', 'PHP', 'Python'];
-    $languages = new ArrayIterator($languages); // convert to iterator
-    //$languages->asort(); // iterators implement many array functions as methods 
-    $languages = new LimitIterator($languages, 0, 2);
-    
-    // getArrayCopy from parent class returns the full array again and not the limited version, which we don't want
-    // phpstorm doesn't find method from parent
-    // $languages = $languages->getArrayCopy(); // ['JS', 'C', 'PHP', 'Python']
-    
-    $languages = iterator_to_array($languages); // limited, ['JS', 'C']
-    $languages = array_reverse($languages);
-
-### Loading and filtering values from JSON
-
-See 4_2_filtering_json_values.php, also for generic FieldFilter extension class.
-
-### RecursiveArrayIterator
-
-Similar to RecursiveDirectoryIterator
-
-## Combining and merging Iterators
-
-### AppendIterator
-
-What it says:
-
-    $xml = new SimpleXMLIterator('common/data/courses.xml', 0, true);
-    $xml1 = new AuthorFilter($xml, 'Kevin Skoglund');
-    $xml2 = new AuthorFilter($xml, 'David Gassner');
-    $xml = new AppendIterator();
-    $xml->append($xml1);
-    $xml->append($xml2);
-
-### MultipleIterator
-
-> This iterator has a misleading name and description - it actually acts as a parallel iterator: You attach one or more iterators with a key, integer or NULL, and when you iterate over the MultipleIterator, as the result for current() you get ALL results from all attached iterators as an array (under the key or integer you attached it with), and the same is true for the key() cal
-[Sven at php.net](https://www.php.net/manual/en/class.multipleiterator.php)
-
-    $boys = new ArrayIterator(['Ian', 'John', 'James']);
-    $girls = new ArrayIterator(['Jennifer', 'Alice', 'Susan']);
-    $unisex = new ArrayIterator(['Jody', 'Ales']);
-    
-    $all = new MultipleIterator(MultipleIterator::MIT_NEED_ANY | MultipleIterator::MIT_KEYS_NUMERIC);
-    $all->attachIterator($boys);
-    $all->attachIterator($girls);
-    $all->attachIterator($unisex);
-    
-    foreach ($all as $key => $value) {
-        echo "<h1>" . $key[0] . "</h1>";
-        foreach ($value as $item) {
-            echo $item . '<br>';
-        }
-    }
-
-    /*
-    0
-    Ian
-    Jennifer
-    Jody
-    1
-    John
-    Alice
-    Ales
-    2
-    James
-    Susan*/
-
-
-    $all = new MultipleIterator(MultipleIterator::MIT_NEED_ANY | MultipleIterator::MIT_KEYS_ASSOC);
-    $all->attachIterator($boys, "boys");
-    $all->attachIterator($girls, "girls");
-    $all->attachIterator($unisex, "any");
-    
-    echo '<pre>';
-    foreach ($all as $names) {
-        print_r($names);
-    echo '</pre>';
-    /*
-    Array
-    (
-        [boys] => Ian
-        [girls] => Jennifer
-        [any] => Jody
-    )
-    Array
-    (
-        [boys] => John
-        [girls] => Alice
-        [any] => Ales
-    )
-    Array
-    (
-        [boys] => James
-        [girls] => Susan
-        [any] => 
-    )*/
-
-}
-
-## Other Iterators
-
-### InfiniteIterator
-
-Repeats an iterator infinitely. Must be limited by e.g. limitIterator:
-
-    $days = [];
-    for ($i = 0; $i < 7; $i++) {
-        $days[] = DateTime::createFromFormat("Ymd", 20210719 + $i)->format('l'); // just any monday
-    }
-    
-    $days = new ArrayIterator($days);
-    $days = new InfiniteIterator($days);
-    $days = new LimitIterator($days, 2, 7); // wed to tuesday
-
-### CachingIterator
-
-Enables lookahead of items.
-
-> The only difference between CachingIterator and other Iterators such as ArrayIterator is the hasNext() method.
-> Since the data will be loaded into the memory, the CachingIterator is able to check whether the given iterator has a next element.
-> "cached iteration over another iterator" means this iterator is always one step behind the inner iterator. In other words, the "first" iteration will yield null.
-[from comments on php.net](https://www.php.net/manual/en/class.cachingiterator.php)
-
-### RecursiveCachingIterator
-
-    $iter = new RecursiveArrayIterator($products);
-    // RecursiveCachingIterator::TOSTRING_USE_KEY converts only key to string, otherwise also
-    // the value (which is / can be an array) will be converted to a string.
-    // RecursiveCachingIterator must be put before the RecursiveIteratorIterator
-    $iter = new RecursiveCachingIterator($iter, RecursiveCachingIterator::TOSTRING_USE_KEY);
-    $iter = new RecursiveIteratorIterator($iter, RecursiveIteratorIterator::SELF_FIRST);
-
-### RecursiveTreeIterator
-
-Generates an ascii graphic tree form any RecursiveIterator (no need for RecursiveIteratorIterator). Characters used for
-tree generation can be overridden using
-e.g. `$files->setPrefixPart(RecursiveTreeIterator::PREFIX_LEFT, '&divideontimes;');`.
-
-### NoRewindIterator and EmptyIterator
-
-- NoRewindIterator can't be reused after iteration.
-- EmptyIterator(): just an iterator w/o items; Intended as a placeholder while there's no data to work with
-
-## SPL Data structures
-
-### Doubly lined lists, stacks and queues
-
-Fast and and less memory intensive alternatives to using arrays (which can simulate the same behavior using push,
-unshift etc.).
-
-- `SplDoublylinkedList`: largely the same methods as for arrays (array_x = SplDoublylinkedList::x, e.g. $dll->push);
-  additionaly bottom() (returns first element) and top() (last element). Should be used for sequential data access and
-  not random access (though elements in the middle can be removed with the `offsetUnset`method).
-- SplStack (Last in, first out)
-- SplQueue (first in, first out) using enqueue(val) and dequeue() which are basically aliases for push and shift
-- For Stack and Queue, bracket notation can be used to add elements.
-- All can be iterated over (in the correct order for the type)
-- setIteratorMode can be used to automatically delete items during iteration or to change the behavior of access (e.g.
-  IT_MODE_LIFO)
-
-To be semantically correct, use only push and pop on stacks and only enqueue and dequeue on queues.
-
-### SplMinHeap and SplMaxHeap
-
-- Binary tree structure where each node as 0-2 children
-- Root node contains the lowest or highest value
-- efficient for sorting
-- access sorted items by removing root node until empty, meaning traversing them is destructive / removes elements
-- not suitable for lists that are traversed repeatedly
-- no bracket notation, just `insert()`
-
-![Minheap](readme_images/minheap.png)
-
-![Maxheap](readme_images/maxheap.png)
-
-For custom / more complicated comparisons (such as comparing objects), we can extend SplHeap and implement the compare
-function:
-
-    class SortCourses extends SplHeap
-    {
-        protected function compare($value1, $value2)
-        {
-            // cast to string when using SimpleXML objects!
-            // Not necessary (but doesn't hurt) for JSON
-            $val1 = (string)$value1->title;
-            $val2 = (string)$value2->title;
-    
-            // needs to return 0 if equal
-            // if first value is greater:
-            //   if returning max heap: return positive
-            //   if returning min heap: return negative
-            // if second value is greater:
-            //   if returning max heap: return negative
-            //   if returning min heap: return positive
-    
-            // we're using minheap
-            if ($val1 == $val2) {
-                return 0;
-            } elseif ($val1 > $val2) {
-                return -1;
-            } else {
-                return 1;
-            }
-        }
-    }
-
-### SplPriorityQueue
-
-Specialized type of maxheap that lets assign a priority value to elements on which they are ordered. See
-7_6_SplPriorityQueue for example sorting a log file, also for extending SplPriorityQueue to keep the chronological
-order.
-
-### SplFixedArray
-
-Much faster and smaller than ordinary array. Must be fixed length and only integers as indexes. No sort methods. Can't
-be used with PHPs array manipulation functions (as it is an object, not an array). Items can only added with an
-indices (so no "[]" notation to add items).
-
-    $animals = ['horse', 'cow', 'aardvark', 'dog', 'zebra', 'monkey', 'dog', 'cat'];
-    
-    $animalsFixedArray = SplFixedArray::fromArray($animals);
-    
-    $otherAr = new SplFixedArray(count($animals));
-    $runner = 0;
-    foreach ($animals as $animal) {
-        // $otherAr[] = $animal; // doesn't work
-        $otherAr[$runner++] = $animal;
-    }
-    print_r($otherAr);
-    
-    // SplFixedArray Object ( [0] => horse [1] => cow [2] => aardvark [3] => dog [4] => zebra [5] => monkey [6] => dog [7] => cat )
-    
-    //$otherAr[$runner] = 'out of range error';
-    
-    // adjust size on the fly
-    $otherAr->setSize($otherAr->getSize() + 1);
-    $otherAr[$runner] = 'but now it works';
 
 # PHP test driven development
 
