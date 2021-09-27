@@ -1,0 +1,433 @@
+[
+    {
+        "title": "Accessing Databases with Object-Oriented PHP",
+        "author": "David Powers",
+        "description": "Learn how to access and manipulate databases using the object-oriented PHP extensions PDO and MySQLi.",
+        "level": "Intermediate",
+        "duration": "3h 47m",
+        "pubdate": "2014-07-07",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Creating Secure PHP Websites",
+        "author": "Kevin Skoglund",
+        "description": "Learn how to meet the most important security challenges when developing websites with PHP.",
+        "level": "Intermediate",
+        "duration": "4h 16m",
+        "pubdate": "2014-06-30",
+        "subjects": [
+            "Developer",
+            "Programming Languages"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Up and Running with Linux for PHP Developers",
+        "author": "Jon Peck",
+        "description": "Need a powerful development environment? Learn how to quickly install and configure a virtual Linux web server on your Mac or Windows computer.",
+        "level": "Beginner",
+        "duration": "3h 52m",
+        "pubdate": "2014-06-13",
+        "subjects": [
+            "Developer",
+            "Servers"
+        ],
+        "software": [
+            "MySQL",
+            "PHP",
+            "Linux",
+            "Apache",
+            "LAMP"
+        ]
+    },
+    {
+        "title": "Exporting Data to Files with PHP",
+        "author": "David Powers",
+        "description": "Learn how to export data from a database with PHP in a variety of formats, including: rich text, CSV, Excel, Word, OpenOffice spreadsheets and documents, and even XML.",
+        "level": "Intermediate",
+        "duration": "3h 42m",
+        "pubdate": "2014-04-11",
+        "subjects": [
+            "Developer",
+            "Databases",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Installing Apache, MySQL, and PHP",
+        "author": "David Gassner",
+        "description": "Describes how to install and configure Apache, MySQL, and PHP, known as the AMP stack, on a local development computer.",
+        "level": "Intermediate",
+        "duration": "2h 59m",
+        "pubdate": "2011-01-21",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Servers",
+            "Databases"
+        ],
+        "software": [
+            "MySQL",
+            "PHP",
+            "HTTP Server",
+            "Apache HTTP Server"
+        ]
+    },
+    {
+        "title": "Uploading Files Securely with PHP",
+        "author": "David Powers",
+        "description": "Develop a PHP class that requires only a few lines of code to handle single- and multi-file uploads both flexibly and securely.",
+        "level": "Intermediate",
+        "duration": "2h 50m",
+        "pubdate": "2014-02-24",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Up and Running with phpMyAdmin",
+        "author": "David Powers",
+        "description": "Learn to administer MySQL databases, design tables, and insert, update, and delete data with phpMyAdmin.",
+        "level": "Beginner",
+        "duration": "2h 39m",
+        "pubdate": "2013-12-09",
+        "subjects": [
+            "Developer",
+            "Databases"
+        ],
+        "software": [
+            "MySQL",
+            "PHP",
+            "phpMyAdmin"
+        ]
+    },
+    {
+        "title": "PHP for Web Designers",
+        "author": "David Powers",
+        "description": "A gentle introduction to PHP, with simple exercises that help you develop dynamic web content, user input forms, and database-powered product pages.",
+        "level": "Beginner",
+        "duration": "5h 26m",
+        "pubdate": "2013-12-09",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Web Design",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Teach Kids Programming with PHP",
+        "author": "Mark Niemann-Ross",
+        "description": "Provides a lesson plan for PHP developers that want to pass on their skills to children\/students who want to start programming with PHP.",
+        "level": "Beginner",
+        "duration": "1h 39m",
+        "pubdate": "2013-10-30",
+        "subjects": [
+            "Developer",
+            "Programming Languages"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Up and Running with CakePHP",
+        "author": "Jon Peck",
+        "description": "Speed up your development with CakePHP, a popular open-source framework for developing PHP-based web applications.",
+        "level": "Intermediate",
+        "duration": "1h 40m",
+        "pubdate": "2013-09-30",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP",
+            "CakePHP"
+        ]
+    },
+    {
+        "title": "Choosing a PHP Editor",
+        "author": "Joseph Lowery",
+        "description": "Learn to make your job easier and your code more accurate by choosing from a selection of general-purpose and PHP-specific code editors and IDEs.",
+        "level": "Beginner",
+        "duration": "1h 19m",
+        "pubdate": "2013-09-24",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Up and Running with PHP CodeIgniter",
+        "author": "Jon Peck",
+        "description": "Speed up your development with CodeIgniter, a fast and powerful PHP web application framework.",
+        "level": "Intermediate",
+        "duration": "1h 30m",
+        "pubdate": "2013-07-11",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP",
+            "CodeIgniter"
+        ]
+    },
+    {
+        "title": "PHP 5.5 First Look",
+        "author": "Jon Peck",
+        "description": "Discover the latest features and what's changed in PHP 5.5.",
+        "level": "Intermediate",
+        "duration": "0h 42m",
+        "pubdate": "2013-06-14",
+        "subjects": [
+            "Developer",
+            "Servers",
+            "Programming Languages"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "PHP with MySQL Essential Training",
+        "author": "Kevin Skoglund",
+        "description": "Learn the basics of PHP (including variables, logical expressions, loops, and functions), and discover how to connect to a MySQL database and develop a complete web application.",
+        "level": "Beginner",
+        "duration": "14h 24m",
+        "pubdate": "2013-06_04",
+        "subjects": [
+            "Developer",
+            "Servers",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "MySQL",
+            "PHP"
+        ]
+    },
+    {
+        "title": "Up and Running with PHP: PEAR, PECL, and Composer",
+        "author": "Joseph LeBlanc",
+        "description": "Use PEAR, PECL, and Composer to incorporate modular, reusable code in your PHP applications.",
+        "level": "Intermediate",
+        "duration": "1h 00m",
+        "pubdate": "2013-05-30",
+        "subjects": [
+            "Developer",
+            "Servers",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP",
+            "PECL",
+            "PEAR",
+            "Composer"
+        ]
+    },
+    {
+        "title": "Validating and Processing Forms with JavaScript and PHP",
+        "author": "Ray Villalobos",
+        "description": "Learn how to ensure the data submitted to your web forms is complete, accurate, and nonmalicious with HTML5, JavaScript, jQuery, and PHP form processing and validation.",
+        "level": "",
+        "duration": "2h 51m",
+        "pubdate": "2013-04-23",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Web Design",
+            "Databases",
+            "Web Development"
+        ],
+        "software": [
+            "JavaScript",
+            "PHP"
+        ]
+    },
+    {
+        "title": "Object-Oriented Programming with PHP",
+        "author": "Jon Peck",
+        "description": "Shows how to integrate the principles of object-oriented programming into the build of a PHP-driven web page or application.",
+        "level": "Intermediate",
+        "duration": "1h 57m",
+        "pubdate": "2012-09-26",
+        "subjects": [
+            "Developer",
+            "Programming Languages"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Building Facebook Applications with PHP and MySQL",
+        "author": "Ray Villalobos",
+        "description": "Learn the basics of building complex, data-driven applications with the Facebook PHP SDK and MySQL.",
+        "level": "Intermediate",
+        "duration": "1h 45m",
+        "pubdate": "2013-01-16",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Databases",
+            "web Development"
+        ],
+        "software": [
+            "Facebook",
+            "MySQL",
+            "PHP"
+        ]
+    },
+    {
+        "title": "Debugging PHP: Advanced Techniques",
+        "author": "Jon Peck",
+        "description": "Demonstrates how to leverage PHP's built-in tools, as well as the Xdebug and Firebug extensions and FirePHP library to improve the quality of your code and reduce troubleshooting overhead.",
+        "level": "Intermediate",
+        "duration": "1h 29m",
+        "pubdate": "2012-12-17",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "PHP",
+            "Xdebug"
+        ]
+    },
+    {
+        "title": "PHP 5.4 New Features",
+        "author": "Drew Falkman",
+        "description": "Shows how to install the latest version of PHP, the popular web application server, and reviews the performance enhancements and language improvements in the 5.4 release.",
+        "level": "Intermediate",
+        "duration": "1h 01m",
+        "pubdate": "2012-06-22",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "MVC Frameworks for Building PHP Web Applications",
+        "author": "Drew Falkman",
+        "description": "Tours four open-source PHP frameworks, describing how to leverage each for developing basic applications.",
+        "level": "Intermediate",
+        "duration": "3h 35m",
+        "pubdate": "2012-02-29",
+        "subjects": [
+            "Developer",
+            "web",
+            "Design Patterns",
+            "Web Development"
+        ],
+        "software": [
+            "PHP",
+            "Symfony",
+            "CakePHP",
+            "Zend Framework",
+            "CodeIgniter"
+        ]
+    },
+    {
+        "title": "Introducing PHP",
+        "author": "David Powers",
+        "description": "Explains what PHP is and how it integrates with HTML; how to set up and configure a PHP development environment on both Windows and Mac OS X; and the features of the PHP language.",
+        "level": "Beginner",
+        "duration": "4h 53m",
+        "pubdate": "2012-01-25",
+        "subjects": [
+            "Developer",
+            "Programming Languages",
+            "Web Development",
+            "video2brain"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "PHP with MySQL Beyond the Basics",
+        "author": "Kevin Skoglund",
+        "description": "Shows how OOP techniques can streamline database queries, help manage sessions, and simplify user logins.",
+        "level": "Intermediate",
+        "duration": "10h 27m",
+        "pubdate": "2009-03-25",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Databases",
+            "Programming Languages",
+            "Web Development"
+        ],
+        "software": [
+            "MySQL",
+            "PHP"
+        ]
+    },
+    {
+        "title": "Setting up PHP 5 for Windows with Apache or IIS",
+        "author": "Kevin Yank",
+        "description": "Explains how to set up a complete web server on Windows; covers PHP 5, the Apache web server, and IIS.",
+        "level": "Intermediate",
+        "duration": "0h 17m",
+        "pubdate": "2007-03-23",
+        "subjects": [
+            "Developer",
+            "Web",
+            "Servers",
+            "Web Development"
+        ],
+        "software": [
+            "PHP"
+        ]
+    },
+    {
+        "title": "Setting Up MySQL 5 for PHP in Windows",
+        "author": "Kevin Yank",
+        "description": "Guides users through the process of installing MySQL 5 on Windows and getting a server running.",
+        "level": "Intermediate",
+        "duration": "0h 16m",
+        "pubdate": "2007-03-23",
+        "subjects": [
+            "Developer",
+            "Databases"
+        ],
+        "software": [
+            "MySQL",
+            "PHP"
+        ]
+    }
+]

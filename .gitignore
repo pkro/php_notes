@@ -4,3 +4,4 @@ Exercise*
 vendor/
 tmp/
 .phpunit.result.cache
+spl_course_files/ch*
