@@ -1,0 +1,16 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^8",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "TDD\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TDD\\Test\\": "tests/"
+    }
+  }
+}

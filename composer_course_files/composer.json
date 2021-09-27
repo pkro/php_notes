@@ -1,0 +1,16 @@
+{
+  "name": "vendor_name/composer_course",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "pk",
+      "email": "pk@pkro.de"
+    }
+  ],
+  "require": {
+    "league/color-extractor": "0.3.*",
+    "monolog/monolog": "^2"
+  }
+}

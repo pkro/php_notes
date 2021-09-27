@@ -778,6 +778,270 @@ Example:
 - never commit vendor folder as composer.json/lock contains all the necessary information; use .gitignore
 - commit composer.lock if exact replica of library versions is desired / required
 
+# PHP test driven development
+
+Course notes for php test driven development course on linkedin learning
+
+## Test driven development
+
+- write test *first*
+- run test (must fail)
+- write code
+- run test
+- repeat until completed
+
+![tdd flowchart](readme_images/tddflow.png)
+
+## Why unit test?
+
+### Ensures it works now and in the future
+
+- tests are run multiple times, even when doing seemingly unrelated changes
+- test first, change code second
+
+### adds additional documentation
+
+- method calls in tests show how to use a method
+
+### Reduces bugs
+
+- proven fewer bugs (teams using TDD had 40-90% reduction of bugs while increasing *initial* development time by only
+  15-35%)
+
+### Improves refactoring
+
+- tests assure that changes don't break the software
+
+### Helps writing better designed code
+
+- increased software quality, made coding easier, improved focused planning and design
+
+## Automated vs manual testing
+
+- similar to testing "by hand"
+- automated
+- isolated
+- no forgotten or missed tests and special cases
+- faster than manual testing
+
+## Other types of testing
+
+- Integration tests
+- Functional testing (against design doc)
+- behavior
+- acceptance (by stakeholders)
+
+## Installing PHP unit
+
+Requirement: at least PHP 5.6, Composer installed
+
+`composer require phpunit/phpunit`
+
+## General principles
+
+- test in isolation
+- test only a few things at once
+- tests should be easy to write - a hard tests generally means rewriting the implementation
+
+## Arrange-Act-Assert
+
+- Arrange (arrange preconditions necessary for the test such as setting up a test DB, objects etc)
+    - Set up / tear down tests with `setUp` and `tearDown` methods that get called before / after each test method to
+      ensure tests don't influence each other.
+    - To create objects shared between all tests, use `setUpBeforeClass` and `tearDownAfterClass` methods (**should be
+      avoided**).
+- Act (act on the method / object under test)
+- Assert (assert correctness of results)
+
+## Running tests
+
+### By hand:
+
+`vendor/bin/phpunit [testdirectory]`
+`vendor/bin/phpunit [testdirectory]/[TestClass.php]`
+`vendor/bin/phpunit [testdirectory] --filter=[TestMethod regex]`
+`vendor/bin/phpunit [testdirectory] --filter=[ClassName]:[MethodName]`
+
+Examples:
+
+- `vendor/bin/phpunit tests --filter=receipt` runs all tests in the ReceiptTest.php file
+- `vendor/bin/phpunit tests --filter=tax` runs all methods / classes containing "tax", e.g. the testTax method from
+  ReceiptTest.php
+- `vendor/bin/phpunit [testdirectory] --filter=ReceiptTest:testTax` tests the indicated method
+
+### In intellij
+
+Just click on the play gutter icon in th class definition (run all tests) or at the methods (individual tests)
+
+### phpunit.xml
+
+A xml file can be created to create test suites, exclude directories, adjust settings such as stopOnFailure and output
+colors.
+
+Testsuites can be run with `vendor/bin/phpunit --testsuite=[suitname]`, the filter option is still possible.
+
+## Testdoubles
+
+> Test Double is a generic term for any case where you replace a production object for testing purposes.
+[Martin Fowler](https://martinfowler.com/bliki/TestDouble.html)
+
+Purpose: test code in isolation; test doubles replace a dependency, ensure some condition occurs, improve test
+performance
+
+5 basic types (blurred differentiation):
+
+- Dummy: replaces an object as an input that isn't used or needed for the test (but expected by the tested method)
+
+      $input = [0, 2, 5, 8];
+      $coupon = null; // dummy object
+      $expected = 15;
+      $result = $this->receipt->total($input, $coupon);
+      $this->assertEquals($expected, $result, 'Sum should equal 15');
+
+- Fake: simplified version of an object to achieve speed or eliminate side effects
+- Stub: provides preset answer to method calls. Example: when checking if an exception is thrown by a method that uses a
+  database object, we could create a fake db object with only one method that always returns false:
+
+        class DB {
+          public function isConnected() {
+            return false;
+          }
+        }
+
+  In PHPUnit these can be created like this:
+
+        public function testPostTaxTotal() {
+          $receipt = $this->getMockBuilder('TDD\Receipt')
+              //addMethods for non existing methods, onlyMethods for existing methods
+              ->onlyMethods(['tax', 'total'])
+              ->getMock();
+          $receipt->method('total') // define method output
+              ->will($this->returnValue(10.00));
+          $receipt->method('tax')
+              ->will($this->returnValue(1.00));
+        
+          // the postTaxTotal method will now interlall use the mock methods above instead
+          // of the ones defined in the class
+          $result = $receipt->postTaxTotal([1,2,5,8], 0.2, null);
+          $expected = 11.0;
+          $this->assertEqualsWithDelta($expected, $result, 0.01, 'postTaxTotal amount should be '. $expected);
+        }
+
+- Spy: higher level stub, records information about what happened with this test double, e.g. recording the number of
+  times it was called
+- Mock: higher level stub, respond almost like the real object but avoid side effects (and can do all of the above of
+  course)
+
+      // Mock version
+      public function testPostTaxTotal()
+      {
+          $items = [1, 2, 5, 8];
+          $tax = 0.2;
+          $coupon = null;
+
+          $receipt = $this->getMockBuilder('TDD\Receipt')
+              //addMethods for non existing methods, onlyMethods for existing methods
+              ->onlyMethods(['tax', 'total'])
+              ->getMock();
+          // expect this method to be called only once
+          // other wise test fails
+          // other arguments: never(), exactly(int amount), and more
+          // this adds an another assertion to the test result (OK (1 test, 2 assertions)) 
+          $receipt->expects($this->once())
+              ->method('total') // define method output
+              ->with($items, $coupon) // (only) with this input
+              ->will($this->returnValue(10.00)); // return this output
+
+          $receipt->expects($this->once())
+              ->method('tax')
+              ->with(10.00, $tax)
+              ->will($this->returnValue(1.00));
+
+          // the postTaxTotal method will now interlall use the mock methods above instead
+          // of the ones defined in the class
+          $result = $receipt->postTaxTotal([1, 2, 5, 8], 0.2, null);
+          $expected = 11.0;
+          $this->assertEqualsWithDelta($expected, $result, 0.01, 'postTaxTotal amount should be ' . $expected);
+      }
+
+## Data Providers
+
+Data providers can feed a test function with values to test in batch so for different parameters we don't have to write
+individual tests.
+
+We indicate the function that feeds the testmethod by annotating the test method:
+
+    /**
+     * @dataProvider provideTotal
+     */
+    public function testTotal($input, $expected)
+    {
+        $coupon = null; // dummy object
+        $result = $this->receipt->total($input, $coupon);
+        $this->assertEquals($expected, $result, 'Sum should equal ' . $expected);
+    }
+
+The provider function returns an array of arrays with the expected parameters:
+
+    public function provideTotal()
+    {
+        return [
+            [[0,2,5,8], 15],
+            [[0], 0],
+            [[9999, 9999], 9999+9999]
+        ];
+    }
+
+Text keys can also be used:
+
+    return [
+        'ints should total 15' => [[0,2,5,8], 15],
+        // ...
+    ];
+
+The test inputs from the provider function can also be filtered:
+
+    vendor/bin/phpunit --filter=testTotal#1
+    vendor/bin/phpunit --filter=testTotal#1-2
+
+## Exception-based tests
+
+Thrown exceptions can be checked by adding `expectException` before the function that throws the exception:
+
+    $this->expectException('BadMethodCallException');
+    $this->receipt->total($input, $coupon);
+
+## TDD advantages
+
+Build more features and less bugs
+
+- more tests + more coverage = less defects
+- less defects = less time spent on bugs
+- less time spent on bugs = more time on features
+- more tests + more coverage = easier refactoring = easier additional features
+
+## Code coverage basics
+
+What lines were run for what tests?
+
+Coverage can be enabled in phpunit.xml. Add (or alter) xdebug.mode=coverage in php.ini. This creates a html report in
+the coverage folder.
+
+Coverage reports can't differentiate between explicit tests / assertions and "accidental" tests, when a tested method
+calls another method (that is otherwise untested).
+
+# Testing legacy applications
+
+Notes from the course of the same name by Chris Hartjes on linkedin learning
+
+## What changes when testing legacy code
+
+## Why legacy code can be hard to test
+
+## Laying the foundation
+
+## Testing legacy code
+
 # Intellij / PHPStorm related
 
 ## resolving tables sql
@@ -1200,18 +1464,6 @@ would load via an <img> tag an external file, with the submitted username and pa
 Use $_SERVER['SCRIPT_NAME'] instead of $_SERVER['PHP_SELF']. HTML encode every string sent to the browser that should
 not be interpreted as HTML, unless you are absolutely certain that it cannot contain anything that the browser can
 interpret as HTML.
-
-# Testing legacy applications
-
-Notes from the course of the same name by Chris Hartjes on linkedin learning
-
-## What changes when testing legacy code
-
-## Why legacy code can be hard to test
-
-## Laying the foundation
-
-## Testing legacy code
 
 # Frameworks
 

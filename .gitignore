@@ -1,2 +1,6 @@
 .idea
 legacy_app
+Exercise*
+vendor/
+tmp/
+.phpunit.result.cache
