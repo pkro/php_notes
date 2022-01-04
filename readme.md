@@ -113,6 +113,15 @@ PHP notes from courses and web finds.
 
 # PHP language related and other tips
 
+## Arrow funcktions (PHP 7.4)
+
+Arrow functions provide a shorter syntax as in JS, but more importantly, automatically have access to the parent's variable scope and thus don't need to use `use ($varname)`, which makes the syntax even more concise compared to normal functions:
+
+    $mult = 5;
+    $times5 = fn($param) => $param * $mult;
+    echo $times5(3); // 15
+    
+
 ## static variables in functions
 
 Static variables can be defined in a function and the initial value is only is remembered / not initialized again on
