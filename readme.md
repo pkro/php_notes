@@ -5,6 +5,7 @@ PHP notes from courses and web finds.
 **Table of Contents**
 
 - [PHP language related and other tips](#php-language-related-and-other-tips)
+  - [Arrow funcktions (PHP 7.4)](#arrow-funcktions-php-74)
   - [static variables in functions](#static-variables-in-functions)
   - [self vs static](#self-vs-static)
   - [Callable formats](#callable-formats)
